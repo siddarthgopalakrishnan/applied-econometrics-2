@@ -1,0 +1,96 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\Study\Applied Econometrics\Assignment 2\gravity_model_log.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Apr 2020, 21:16:26
+
+{com}. set more off
+
+. use "F:\Study\Applied Econometrics\Assignment 2\gravdata_cepii\augmented_data.dta", clear
+
+. xtset source year
+{res}{txt}{col 8}panel variable:  {res}source (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 2003 to 2015
+{txt}{col 17}delta:  {res}1 unit
+
+{com}. xtreg log_exports log_origin_gdp log_dest_gdp log_dist entry_cost_o entry_cost_d exchange_rate_source exchange_rate_dest i.eu_d entry_proc_d entry_proc_o, re robust
+{txt}note: log_dist omitted because of collinearity
+{res}
+{txt}Random-effects GLS regression                   Number of obs      = {res}       26
+{txt}Group variable: {res}source                          {txt}Number of groups   = {res}        2
+
+{txt}R-sq:  within  = {res}0.9675                         {txt}Obs per group: min = {res}       13
+{txt}       between = {res}1.0000                                        {txt}avg = {res}     13.0
+{txt}       overall = {res}0.9681                                        {txt}max = {res}       13
+
+                                                {txt}{help j_robustsingular##|_new:Wald chi2(1)}{col 68}={col 70}{res}        .
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2        =    {res}     .
+
+{txt}{ralign 86:(Std. Err. adjusted for {res:2} clusters in source)}
+{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 22}{c |}{col 34}    Robust
+{col 1}         log_exports{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}log_origin_gdp {c |}{col 22}{res}{space 2}    .8492{col 34}{space 2} .0151006{col 45}{space 1}   56.24{col 54}{space 3}0.000{col 62}{space 4} .8196034{col 75}{space 3} .8787965
+{txt}{space 8}log_dest_gdp {c |}{col 22}{res}{space 2}  .887486{col 34}{space 2} .0862034{col 45}{space 1}   10.30{col 54}{space 3}0.000{col 62}{space 4} .7185304{col 75}{space 3} 1.056442
+{txt}{space 12}log_dist {c |}{col 22}{res}{space 2}        0{col 34}{txt}  (omitted)
+{space 8}entry_cost_o {c |}{col 22}{res}{space 2} .0012939{col 34}{space 2} .0002732{col 45}{space 1}    4.74{col 54}{space 3}0.000{col 62}{space 4} .0007585{col 75}{space 3} .0018294
+{txt}{space 8}entry_cost_d {c |}{col 22}{res}{space 2} .0083226{col 34}{space 2} .0003917{col 45}{space 1}   21.25{col 54}{space 3}0.000{col 62}{space 4} .0075549{col 75}{space 3} .0090902
+{txt}exchange_rate_source {c |}{col 22}{res}{space 2} .0001319{col 34}{space 2} .0001415{col 45}{space 1}    0.93{col 54}{space 3}0.351{col 62}{space 4}-.0001455{col 75}{space 3} .0004092
+{txt}{space 2}exchange_rate_dest {c |}{col 22}{res}{space 2} -.000271{col 34}{space 2} .0003213{col 45}{space 1}   -0.84{col 54}{space 3}0.399{col 62}{space 4}-.0009006{col 75}{space 3} .0003587
+{txt}{space 14}1.eu_d {c |}{col 22}{res}{space 2} 1.430496{col 34}{space 2} 1.052395{col 45}{space 1}    1.36{col 54}{space 3}0.174{col 62}{space 4}-.6321598{col 75}{space 3} 3.493153
+{txt}{space 8}entry_proc_d {c |}{col 22}{res}{space 2} .0264838{col 34}{space 2} .0048991{col 45}{space 1}    5.41{col 54}{space 3}0.000{col 62}{space 4} .0168817{col 75}{space 3} .0360859
+{txt}{space 8}entry_proc_o {c |}{col 22}{res}{space 2}-.0556527{col 34}{space 2} .0446731{col 45}{space 1}   -1.25{col 54}{space 3}0.213{col 62}{space 4}-.1432104{col 75}{space 3} .0319051
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-34.42095{col 34}{space 2} 2.033566{col 45}{space 1}  -16.93{col 54}{space 3}0.000{col 62}{space 4}-38.40667{col 75}{space 3}-30.43524
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+             sigma_u {c |} {res}         0
+             {txt}sigma_e {c |} {res} .09143279
+                 {txt}rho {c |} {res}         0{txt}   (fraction of variance due to u_i)
+{hline 21}{c BT}{hline 64}
+
+{com}. xtreg log_imports log_origin_gdp log_dest_gdp log_dist entry_cost_o entry_cost_d exchange_rate_source exchange_rate_dest i.eu_d entry_proc_d entry_proc_o, re
+{txt}note: log_dist omitted because of collinearity
+{res}
+{txt}Random-effects GLS regression                   Number of obs      = {res}       26
+{txt}Group variable: {res}source                          {txt}Number of groups   = {res}        2
+
+{txt}R-sq:  within  = {res}0.9830                         {txt}Obs per group: min = {res}       13
+{txt}       between = {res}1.0000                                        {txt}avg = {res}     13.0
+{txt}       overall = {res}0.9845                                        {txt}max = {res}       13
+
+                                                {txt}Wald chi2({res}9{txt})       = {res}  1015.66
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2        =    {res}0.0000
+
+{txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         log_imports{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}log_origin_gdp {c |}{col 22}{res}{space 2} 1.178296{col 34}{space 2} .0970214{col 45}{space 1}   12.14{col 54}{space 3}0.000{col 62}{space 4} .9881376{col 75}{space 3} 1.368454
+{txt}{space 8}log_dest_gdp {c |}{col 22}{res}{space 2} .6963614{col 34}{space 2} .0970214{col 45}{space 1}    7.18{col 54}{space 3}0.000{col 62}{space 4}  .506203{col 75}{space 3} .8865198
+{txt}{space 12}log_dist {c |}{col 22}{res}{space 2}        0{col 34}{txt}  (omitted)
+{space 8}entry_cost_o {c |}{col 22}{res}{space 2} .0098733{col 34}{space 2}   .00204{col 45}{space 1}    4.84{col 54}{space 3}0.000{col 62}{space 4} .0058749{col 75}{space 3} .0138717
+{txt}{space 8}entry_cost_d {c |}{col 22}{res}{space 2} .0021049{col 34}{space 2}   .00204{col 45}{space 1}    1.03{col 54}{space 3}0.302{col 62}{space 4}-.0018935{col 75}{space 3} .0061032
+{txt}exchange_rate_source {c |}{col 22}{res}{space 2}-.0004534{col 34}{space 2}  .000305{col 45}{space 1}   -1.49{col 54}{space 3}0.137{col 62}{space 4}-.0010512{col 75}{space 3} .0001443
+{txt}{space 2}exchange_rate_dest {c |}{col 22}{res}{space 2} .0001119{col 34}{space 2}  .000305{col 45}{space 1}    0.37{col 54}{space 3}0.714{col 62}{space 4}-.0004859{col 75}{space 3} .0007097
+{txt}{space 14}1.eu_d {c |}{col 22}{res}{space 2}-1.670193{col 34}{space 2} .8541674{col 45}{space 1}   -1.96{col 54}{space 3}0.051{col 62}{space 4} -3.34433{col 75}{space 3} .0039444
+{txt}{space 8}entry_proc_d {c |}{col 22}{res}{space 2}-.0833184{col 34}{space 2} .0286355{col 45}{space 1}   -2.91{col 54}{space 3}0.004{col 62}{space 4}-.1394429{col 75}{space 3}-.0271938
+{txt}{space 8}entry_proc_o {c |}{col 22}{res}{space 2} .0019406{col 34}{space 2} .0286355{col 45}{space 1}    0.07{col 54}{space 3}0.946{col 62}{space 4} -.054184{col 75}{space 3} .0580651
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-36.05857{col 34}{space 2} 3.822591{col 45}{space 1}   -9.43{col 54}{space 3}0.000{col 62}{space 4}-43.55071{col 75}{space 3}-28.56643
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+             sigma_u {c |} {res}         0
+             {txt}sigma_e {c |} {res} .07385553
+                 {txt}rho {c |} {res}         0{txt}   (fraction of variance due to u_i)
+{hline 21}{c BT}{hline 64}
+
+{com}. * We make two separate models, one for exports and one for imports, as net trade flows are negative in some years, and so cannot
+
+. * be transformed using log.
+
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}F:\Study\Applied Econometrics\Assignment 2\gravity_model_log.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Apr 2020, 21:18:24
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

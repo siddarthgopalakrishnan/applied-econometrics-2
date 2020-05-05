@@ -1,0 +1,30 @@
+To set the proper sample for panel data analysis, use observations for which SMALL = 0.  To obtain the balanced panel, then use only observations with GROUPTI = 5.
+The variables in the file are
+COMP = composite measure of health care attainment;
+LCOMP = logCOMP
+POPDEN = population density*
+PUBTHE = proportion of health expenditure paid by bublic authorities
+GDPC = normalized per capita GDP; LGDPC = logGDPC; LGDPC2 = log-squaredGDPC
+YEAR = 1993,...,1997;  TIME = 1,2,3,4,5;  T93, T94, T95, T96, T97 = year dummy variables
+HEXP = per capita health expenditure; 
+LHEXP = logHEXP; 
+LHEXP2 = log-squaredHEXP
+HC3 = educational attainment; 
+LHC = logHC3; 
+LHC2 = log-squaredHC3; 
+LHEXPHC = logHEXP * logHC3
+OECD = dummy variable for OECD country (30 countries)
+GINI = gini coefficient for income inequality
+GEFF = world bank measure of government effectiveness*
+VOICE = world bank measure of democratization of the political process*
+
+SMALL = indicator for states, provinces, etc. SMALL > 0 implies internal political unit, = 0 implies country observation
+COUNTRY = number assigned to country
+STRATUM = another country indicator
+GROUPTI = number of observations when SMALL = 0. Usually 5, some = 1, one country = 4.
+TROPICS = dummy variable for tropical location
+DALE = Disability adjusted life expectancy (other measure);
+LDALE = logDALE
+
+Dep: GDPC / COMP / LHEXP, 
+Indeps: COMP, DALE, HEXP, HC3, Dummies

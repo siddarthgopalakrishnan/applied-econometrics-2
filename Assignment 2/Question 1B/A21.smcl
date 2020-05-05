@@ -1,0 +1,439 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\shanm\Desktop\DBS\A21.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Apr 2020, 16:00:25
+
+{com}. keep if small == 0 & groupti == 5
+{txt}(140 observations deleted)
+
+{com}. encode country_name, gen(c_name)
+
+. xtset c_name year
+{res}{txt}{col 8}panel variable:  {res}c_name (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 1993 to 1997
+{txt}{col 17}delta:  {res}1 unit
+
+{com}. reg dale comp lhexp hc3 hc3sq gini pubthe i.c_name
+{err}variable hc3sq not found
+{txt}{search r(111):r(111);}
+
+{com}. hc3 = hc3^2
+{err}unrecognized command:  hc3
+{txt}{search r(199):r(199);}
+
+{com}. gen hc3 = hc3^2
+{err}hc3 already defined
+{txt}{search r(110):r(110);}
+
+{com}. gen hc3sq = hc3^2
+
+. reg dale comp lhexp hc3 hc3sq gini pubthe i.c_name
+{p 0 6 2}{txt}note: 139.c_name omitted because of collinearity{p_end}
+{p 0 6 2}note: 140.c_name omitted because of collinearity{p_end}
+
+      Source {c |}       SS       df       MS              Number of obs ={res}     700
+{txt}{hline 13}{char +}{hline 30}           F(143,   556) ={res} 3342.03
+    {txt}   Model {char |} {res} 105122.964   143  735.125624           {txt}Prob > F      = {res} 0.0000
+    {txt}Residual {char |} {res}  122.29997   556  .219963975           {txt}R-squared     = {res} 0.9988
+{txt}{hline 13}{char +}{hline 30}           Adj R-squared = {res} 0.9985
+    {txt}   Total {char |} {res} 105245.264   699  150.565471           {txt}Root MSE      = {res}   .469
+
+{txt}{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}             dale{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      t{col 51}   P>|t|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 13}comp {c |}{col 19}{res}{space 2} .0179526{col 31}{space 2} .0058756{col 42}{space 1}    3.06{col 51}{space 3}0.002{col 59}{space 4} .0064116{col 72}{space 3} .0294936
+{txt}{space 12}lhexp {c |}{col 19}{res}{space 2} .4432109{col 31}{space 2} .1329044{col 42}{space 1}    3.33{col 51}{space 3}0.001{col 59}{space 4} .1821547{col 72}{space 3}  .704267
+{txt}{space 14}hc3 {c |}{col 19}{res}{space 2} 1.812178{col 31}{space 2} .4386574{col 42}{space 1}    4.13{col 51}{space 3}0.000{col 59}{space 4} .9505495{col 72}{space 3} 2.673806
+{txt}{space 12}hc3sq {c |}{col 19}{res}{space 2}-.0014746{col 31}{space 2} .0373928{col 42}{space 1}   -0.04{col 51}{space 3}0.969{col 59}{space 4} -.074923{col 72}{space 3} .0719738
+{txt}{space 13}gini {c |}{col 19}{res}{space 2} 582.0264{col 31}{space 2} 15.46436{col 42}{space 1}   37.64{col 51}{space 3}0.000{col 59}{space 4} 551.6507{col 72}{space 3} 612.4022
+{txt}{space 11}pubthe {c |}{col 19}{res}{space 2} 6.610212{col 31}{space 2} .1760515{col 42}{space 1}   37.55{col 51}{space 3}0.000{col 59}{space 4} 6.264404{col 72}{space 3} 6.956019
+{txt}{space 17} {c |}
+{space 11}c_name {c |}
+Armenia           {c |}{col 19}{res}{space 2}  217.519{col 31}{space 2}  5.37882{col 42}{space 1}   40.44{col 51}{space 3}0.000{col 59}{space 4} 206.9537{col 72}{space 3} 228.0843
+{txt}Australia         {c |}{col 19}{res}{space 2}-16.74591{col 31}{space 2} .9734277{col 42}{space 1}  -17.20{col 51}{space 3}0.000{col 59}{space 4}-18.65795{col 72}{space 3}-14.83386
+{txt}Austria           {c |}{col 19}{res}{space 2} 87.21602{col 31}{space 2} 2.341333{col 42}{space 1}   37.25{col 51}{space 3}0.000{col 59}{space 4} 82.61708{col 72}{space 3} 91.81496
+{txt}Bahamas           {c |}{col 19}{res}{space 2} 42.86843{col 31}{space 2}  1.27122{col 42}{space 1}   33.72{col 51}{space 3}0.000{col 59}{space 4} 40.37145{col 72}{space 3} 45.36541
+{txt}Bahrain           {c |}{col 19}{res}{space 2}  59.9625{col 31}{space 2} 1.247182{col 42}{space 1}   48.08{col 51}{space 3}0.000{col 59}{space 4} 57.51274{col 72}{space 3} 62.41227
+{txt}Bangladesh        {c |}{col 19}{res}{space 2} 159.0022{col 31}{space 2}  3.73866{col 42}{space 1}   42.53{col 51}{space 3}0.000{col 59}{space 4} 151.6585{col 72}{space 3} 166.3458
+{txt}Barbados          {c |}{col 19}{res}{space 2}-33.90498{col 31}{space 2} 1.053076{col 42}{space 1}  -32.20{col 51}{space 3}0.000{col 59}{space 4}-35.97347{col 72}{space 3}-31.83649
+{txt}Belarus           {c |}{col 19}{res}{space 2}-16.13831{col 31}{space 2} 1.702791{col 42}{space 1}   -9.48{col 51}{space 3}0.000{col 59}{space 4}  -19.483{col 72}{space 3}-12.79362
+{txt}Belgium           {c |}{col 19}{res}{space 2}-30.64658{col 31}{space 2}  1.85895{col 42}{space 1}  -16.49{col 51}{space 3}0.000{col 59}{space 4}  -34.298{col 72}{space 3}-26.99515
+{txt}Benin             {c |}{col 19}{res}{space 2} 75.23508{col 31}{space 2} 1.805753{col 42}{space 1}   41.66{col 51}{space 3}0.000{col 59}{space 4} 71.68815{col 72}{space 3} 78.78201
+{txt}Bolivia           {c |}{col 19}{res}{space 2} 21.80172{col 31}{space 2} .6469657{col 42}{space 1}   33.70{col 51}{space 3}0.000{col 59}{space 4} 20.53093{col 72}{space 3} 23.07252
+{txt}Botswana          {c |}{col 19}{res}{space 2}-26.77249{col 31}{space 2} 1.006919{col 42}{space 1}  -26.59{col 51}{space 3}0.000{col 59}{space 4}-28.75032{col 72}{space 3}-24.79466
+{txt}Brazil            {c |}{col 19}{res}{space 2} 2.099066{col 31}{space 2} .6484777{col 42}{space 1}    3.24{col 51}{space 3}0.001{col 59}{space 4} .8253001{col 72}{space 3} 3.372831
+{txt}Bulgaria          {c |}{col 19}{res}{space 2}-47.19969{col 31}{space 2} 1.815215{col 42}{space 1}  -26.00{col 51}{space 3}0.000{col 59}{space 4} -50.7652{col 72}{space 3}-43.63417
+{txt}Burkina Faso      {c |}{col 19}{res}{space 2} 166.6463{col 31}{space 2} 4.215261{col 42}{space 1}   39.53{col 51}{space 3}0.000{col 59}{space 4} 158.3665{col 72}{space 3}  174.926
+{txt}Burundi           {c |}{col 19}{res}{space 2} 215.5193{col 31}{space 2} 5.473782{col 42}{space 1}   39.37{col 51}{space 3}0.000{col 59}{space 4} 204.7675{col 72}{space 3} 226.2712
+{txt}Cameroon          {c |}{col 19}{res}{space 2}  250.749{col 31}{space 2} 6.304267{col 42}{space 1}   39.77{col 51}{space 3}0.000{col 59}{space 4} 238.3659{col 72}{space 3} 263.1321
+{txt}Canada            {c |}{col 19}{res}{space 2} 3.835701{col 31}{space 2} 1.146854{col 42}{space 1}    3.34{col 51}{space 3}0.001{col 59}{space 4} 1.583006{col 72}{space 3} 6.088397
+{txt}Cape Verde        {c |}{col 19}{res}{space 2}-22.46423{col 31}{space 2} 1.555968{col 42}{space 1}  -14.44{col 51}{space 3}0.000{col 59}{space 4}-25.52052{col 72}{space 3}-19.40793
+{txt}Central African   {c |}{col 19}{res}{space 2}-158.2372{col 31}{space 2} 4.444067{col 42}{space 1}  -35.61{col 51}{space 3}0.000{col 59}{space 4}-166.9665{col 72}{space 3} -149.508
+{txt}Chile             {c |}{col 19}{res}{space 2} 24.68062{col 31}{space 2} .4924143{col 42}{space 1}   50.12{col 51}{space 3}0.000{col 59}{space 4}  23.7134{col 72}{space 3} 25.64784
+{txt}China  (g)        {c |}{col 19}{res}{space 2}  266.577{col 31}{space 2}   6.4614{col 42}{space 1}   41.26{col 51}{space 3}0.000{col 59}{space 4} 253.8853{col 72}{space 3} 279.2687
+{txt}Colombia          {c |}{col 19}{res}{space 2}-17.02997{col 31}{space 2} 1.091187{col 42}{space 1}  -15.61{col 51}{space 3}0.000{col 59}{space 4}-19.17332{col 72}{space 3}-14.88662
+{txt}Comoros           {c |}{col 19}{res}{space 2}-62.14429{col 31}{space 2} 2.308296{col 42}{space 1}  -26.92{col 51}{space 3}0.000{col 59}{space 4}-66.67833{col 72}{space 3}-57.61024
+{txt}Congo             {c |}{col 19}{res}{space 2} 143.7608{col 31}{space 2} 3.559036{col 42}{space 1}   40.39{col 51}{space 3}0.000{col 59}{space 4}   136.77{col 72}{space 3} 150.7516
+{txt}Costa Rica        {c |}{col 19}{res}{space 2}-111.8009{col 31}{space 2} 3.684288{col 42}{space 1}  -30.35{col 51}{space 3}0.000{col 59}{space 4}-119.0377{col 72}{space 3} -104.564
+{txt}Cote d'Ivoire     {c |}{col 19}{res}{space 2} 186.8406{col 31}{space 2} 4.534245{col 42}{space 1}   41.21{col 51}{space 3}0.000{col 59}{space 4} 177.9343{col 72}{space 3}  195.747
+{txt}Croatia           {c |}{col 19}{res}{space 2}-20.77073{col 31}{space 2} 1.633492{col 42}{space 1}  -12.72{col 51}{space 3}0.000{col 59}{space 4} -23.9793{col 72}{space 3}-17.56216
+{txt}Cyprus            {c |}{col 19}{res}{space 2} 215.3094{col 31}{space 2} 5.309384{col 42}{space 1}   40.55{col 51}{space 3}0.000{col 59}{space 4} 204.8805{col 72}{space 3} 225.7383
+{txt}Czech Republic    {c |}{col 19}{res}{space 2}-97.23555{col 31}{space 2} 2.900969{col 42}{space 1}  -33.52{col 51}{space 3}0.000{col 59}{space 4}-102.9338{col 72}{space 3}-91.53735
+{txt}Denmark           {c |}{col 19}{res}{space 2}-41.62133{col 31}{space 2} 1.752694{col 42}{space 1}  -23.75{col 51}{space 3}0.000{col 59}{space 4}-45.06404{col 72}{space 3}-38.17861
+{txt}Dominican Republ  {c |}{col 19}{res}{space 2} 132.9502{col 31}{space 2} 2.843364{col 42}{space 1}   46.76{col 51}{space 3}0.000{col 59}{space 4} 127.3651{col 72}{space 3} 138.5352
+{txt}Ecuador           {c |}{col 19}{res}{space 2} 60.93666{col 31}{space 2} 1.213392{col 42}{space 1}   50.22{col 51}{space 3}0.000{col 59}{space 4} 58.55327{col 72}{space 3} 63.32006
+{txt}Egypt             {c |}{col 19}{res}{space 2} 317.1789{col 31}{space 2} 7.612155{col 42}{space 1}   41.67{col 51}{space 3}0.000{col 59}{space 4} 302.2268{col 72}{space 3}  332.131
+{txt}El Salvador       {c |}{col 19}{res}{space 2} 122.8263{col 31}{space 2} 2.546133{col 42}{space 1}   48.24{col 51}{space 3}0.000{col 59}{space 4}  117.825{col 72}{space 3} 127.8275
+{txt}Equatorial Guine  {c |}{col 19}{res}{space 2} 5.355844{col 31}{space 2} .5179517{col 42}{space 1}   10.34{col 51}{space 3}0.000{col 59}{space 4} 4.338463{col 72}{space 3} 6.373225
+{txt}Estonia           {c |}{col 19}{res}{space 2}-67.51763{col 31}{space 2} 2.102384{col 42}{space 1}  -32.11{col 51}{space 3}0.000{col 59}{space 4}-71.64722{col 72}{space 3}-63.38804
+{txt}Ethiopia          {c |}{col 19}{res}{space 2} 176.8916{col 31}{space 2} 4.469377{col 42}{space 1}   39.58{col 51}{space 3}0.000{col 59}{space 4} 168.1126{col 72}{space 3} 185.6705
+{txt}Fiji              {c |}{col 19}{res}{space 2} -29.4522{col 31}{space 2} 1.069134{col 42}{space 1}  -27.55{col 51}{space 3}0.000{col 59}{space 4}-31.55224{col 72}{space 3}-27.35217
+{txt}Finland           {c |}{col 19}{res}{space 2} 25.52083{col 31}{space 2} 1.520102{col 42}{space 1}   16.79{col 51}{space 3}0.000{col 59}{space 4} 22.53499{col 72}{space 3} 28.50668
+{txt}France            {c |}{col 19}{res}{space 2}-27.74758{col 31}{space 2} 1.881201{col 42}{space 1}  -14.75{col 51}{space 3}0.000{col 59}{space 4}-31.44271{col 72}{space 3}-24.05245
+{txt}Gambia            {c |}{col 19}{res}{space 2} 81.44151{col 31}{space 2} 1.769001{col 42}{space 1}   46.04{col 51}{space 3}0.000{col 59}{space 4} 77.96676{col 72}{space 3} 84.91625
+{txt}Georgia           {c |}{col 19}{res}{space 2} 411.2905{col 31}{space 2} 11.14255{col 42}{space 1}   36.91{col 51}{space 3}0.000{col 59}{space 4} 389.4039{col 72}{space 3} 433.1772
+{txt}Germany           {c |}{col 19}{res}{space 2}-22.80955{col 31}{space 2} 1.439586{col 42}{space 1}  -15.84{col 51}{space 3}0.000{col 59}{space 4}-25.63724{col 72}{space 3}-19.98186
+{txt}Ghana             {c |}{col 19}{res}{space 2} 148.8379{col 31}{space 2} 3.591662{col 42}{space 1}   41.44{col 51}{space 3}0.000{col 59}{space 4}  141.783{col 72}{space 3} 155.8928
+{txt}Greece            {c |}{col 19}{res}{space 2} 43.25549{col 31}{space 2} 1.225122{col 42}{space 1}   35.31{col 51}{space 3}0.000{col 59}{space 4} 40.84905{col 72}{space 3} 45.66192
+{txt}Guatemala         {c |}{col 19}{res}{space 2}-90.77869{col 31}{space 2} 2.978152{col 42}{space 1}  -30.48{col 51}{space 3}0.000{col 59}{space 4} -96.6285{col 72}{space 3}-84.92889
+{txt}Guinea-Bissau     {c |}{col 19}{res}{space 2}-171.4656{col 31}{space 2} 4.847279{col 42}{space 1}  -35.37{col 51}{space 3}0.000{col 59}{space 4}-180.9868{col 72}{space 3}-161.9444
+{txt}Guyana            {c |}{col 19}{res}{space 2}-91.19964{col 31}{space 2} 3.151466{col 42}{space 1}  -28.94{col 51}{space 3}0.000{col 59}{space 4}-97.38988{col 72}{space 3}-85.00941
+{txt}Haiti             {c |}{col 19}{res}{space 2} 153.5774{col 31}{space 2} 3.648829{col 42}{space 1}   42.09{col 51}{space 3}0.000{col 59}{space 4} 146.4103{col 72}{space 3} 160.7446
+{txt}Honduras          {c |}{col 19}{res}{space 2} 120.5473{col 31}{space 2} 2.552606{col 42}{space 1}   47.23{col 51}{space 3}0.000{col 59}{space 4} 115.5334{col 72}{space 3} 125.5613
+{txt}Hungary           {c |}{col 19}{res}{space 2}-74.42734{col 31}{space 2} 2.381046{col 42}{space 1}  -31.26{col 51}{space 3}0.000{col 59}{space 4}-79.10429{col 72}{space 3} -69.7504
+{txt}Iceland           {c |}{col 19}{res}{space 2}-59.51166{col 31}{space 2} 2.361711{col 42}{space 1}  -25.20{col 51}{space 3}0.000{col 59}{space 4}-64.15062{col 72}{space 3}-54.87269
+{txt}India             {c |}{col 19}{res}{space 2} 357.2153{col 31}{space 2} 8.906786{col 42}{space 1}   40.11{col 51}{space 3}0.000{col 59}{space 4} 339.7202{col 72}{space 3} 374.7103
+{txt}Indonesia         {c |}{col 19}{res}{space 2} 209.6709{col 31}{space 2} 4.882145{col 42}{space 1}   42.95{col 51}{space 3}0.000{col 59}{space 4} 200.0812{col 72}{space 3} 219.2606
+{txt}Iran (Islamic Re  {c |}{col 19}{res}{space 2} 160.7202{col 31}{space 2} 3.578245{col 42}{space 1}   44.92{col 51}{space 3}0.000{col 59}{space 4} 153.6917{col 72}{space 3} 167.7488
+{txt}Iraq              {c |}{col 19}{res}{space 2} 70.65516{col 31}{space 2} 1.547103{col 42}{space 1}   45.67{col 51}{space 3}0.000{col 59}{space 4} 67.61628{col 72}{space 3} 73.69404
+{txt}Ireland           {c |}{col 19}{res}{space 2}-52.63688{col 31}{space 2} 1.971301{col 42}{space 1}  -26.70{col 51}{space 3}0.000{col 59}{space 4}-56.50899{col 72}{space 3}-48.76477
+{txt}Israel            {c |}{col 19}{res}{space 2}-37.72109{col 31}{space 2} 1.359284{col 42}{space 1}  -27.75{col 51}{space 3}0.000{col 59}{space 4}-40.39105{col 72}{space 3}-35.05113
+{txt}Italy             {c |}{col 19}{res}{space 2} 133.1865{col 31}{space 2} 3.099363{col 42}{space 1}   42.97{col 51}{space 3}0.000{col 59}{space 4} 127.0986{col 72}{space 3} 139.2744
+{txt}Jamaica           {c |}{col 19}{res}{space 2} 59.86961{col 31}{space 2} 1.009023{col 42}{space 1}   59.33{col 51}{space 3}0.000{col 59}{space 4} 57.88765{col 72}{space 3} 61.85158
+{txt}Japan             {c |}{col 19}{res}{space 2}-7.008996{col 31}{space 2}  1.58165{col 42}{space 1}   -4.43{col 51}{space 3}0.000{col 59}{space 4}-10.11574{col 72}{space 3}-3.902255
+{txt}Jordan            {c |}{col 19}{res}{space 2} 6.672101{col 31}{space 2} .9754757{col 42}{space 1}    6.84{col 51}{space 3}0.000{col 59}{space 4} 4.756032{col 72}{space 3} 8.588169
+{txt}Kazakhstan        {c |}{col 19}{res}{space 2} 30.87697{col 31}{space 2} .9487284{col 42}{space 1}   32.55{col 51}{space 3}0.000{col 59}{space 4} 29.01344{col 72}{space 3}  32.7405
+{txt}Kenya             {c |}{col 19}{res}{space 2}-32.64092{col 31}{space 2} 1.341097{col 42}{space 1}  -24.34{col 51}{space 3}0.000{col 59}{space 4}-35.27516{col 72}{space 3}-30.00668
+{txt}Kuwait            {c |}{col 19}{res}{space 2}-135.5367{col 31}{space 2} 4.233017{col 42}{space 1}  -32.02{col 51}{space 3}0.000{col 59}{space 4}-143.8514{col 72}{space 3}-127.2221
+{txt}Latvia            {c |}{col 19}{res}{space 2} 66.80381{col 31}{space 2} 1.909461{col 42}{space 1}   34.99{col 51}{space 3}0.000{col 59}{space 4} 63.05317{col 72}{space 3} 70.55444
+{txt}Lebanon           {c |}{col 19}{res}{space 2} 244.3262{col 31}{space 2} 6.022383{col 42}{space 1}   40.57{col 51}{space 3}0.000{col 59}{space 4} 232.4968{col 72}{space 3} 256.1556
+{txt}Lesotho           {c |}{col 19}{res}{space 2}-155.8128{col 31}{space 2} 4.280391{col 42}{space 1}  -36.40{col 51}{space 3}0.000{col 59}{space 4}-164.2205{col 72}{space 3}-147.4051
+{txt}Lithuania         {c |}{col 19}{res}{space 2}-27.81381{col 31}{space 2} 1.469984{col 42}{space 1}  -18.92{col 51}{space 3}0.000{col 59}{space 4}-30.70121{col 72}{space 3}-24.92641
+{txt}Luxembourg        {c |}{col 19}{res}{space 2}-96.62641{col 31}{space 2} 3.169779{col 42}{space 1}  -30.48{col 51}{space 3}0.000{col 59}{space 4}-102.8526{col 72}{space 3} -90.4002
+{txt}Malawi            {c |}{col 19}{res}{space 2}-16.50827{col 31}{space 2} .8975614{col 42}{space 1}  -18.39{col 51}{space 3}0.000{col 59}{space 4}-18.27129{col 72}{space 3}-14.74524
+{txt}Malaysia          {c |}{col 19}{res}{space 2} 3.773528{col 31}{space 2} .4937008{col 42}{space 1}    7.64{col 51}{space 3}0.000{col 59}{space 4} 2.803781{col 72}{space 3} 4.743275
+{txt}Maldives          {c |}{col 19}{res}{space 2} 27.36898{col 31}{space 2} 1.078194{col 42}{space 1}   25.38{col 51}{space 3}0.000{col 59}{space 4} 25.25115{col 72}{space 3} 29.48681
+{txt}Mali              {c |}{col 19}{res}{space 2} 53.69036{col 31}{space 2} 1.586745{col 42}{space 1}   33.84{col 51}{space 3}0.000{col 59}{space 4} 50.57361{col 72}{space 3} 56.80711
+{txt}Malta             {c |}{col 19}{res}{space 2} 110.1241{col 31}{space 2} 2.406036{col 42}{space 1}   45.77{col 51}{space 3}0.000{col 59}{space 4} 105.3981{col 72}{space 3} 114.8502
+{txt}Mauritania        {c |}{col 19}{res}{space 2} 223.4894{col 31}{space 2} 5.563068{col 42}{space 1}   40.17{col 51}{space 3}0.000{col 59}{space 4} 212.5622{col 72}{space 3} 234.4166
+{txt}Mauritius         {c |}{col 19}{res}{space 2}  44.5415{col 31}{space 2}  .852369{col 42}{space 1}   52.26{col 51}{space 3}0.000{col 59}{space 4} 42.86724{col 72}{space 3} 46.21576
+{txt}Mexico            {c |}{col 19}{res}{space 2} 87.29235{col 31}{space 2} 2.088322{col 42}{space 1}   41.80{col 51}{space 3}0.000{col 59}{space 4} 83.19039{col 72}{space 3} 91.39432
+{txt}Morocco           {c |}{col 19}{res}{space 2} 168.9719{col 31}{space 2} 3.774178{col 42}{space 1}   44.77{col 51}{space 3}0.000{col 59}{space 4} 161.5585{col 72}{space 3} 176.3853
+{txt}Mozambique        {c |}{col 19}{res}{space 2}-53.21731{col 31}{space 2} 2.304106{col 42}{space 1}  -23.10{col 51}{space 3}0.000{col 59}{space 4}-57.74313{col 72}{space 3} -48.6915
+{txt}Myanmar           {c |}{col 19}{res}{space 2} 369.2414{col 31}{space 2}  9.10603{col 42}{space 1}   40.55{col 51}{space 3}0.000{col 59}{space 4} 351.3549{col 72}{space 3} 387.1278
+{txt}Namibia           {c |}{col 19}{res}{space 2} 36.11541{col 31}{space 2} 1.043332{col 42}{space 1}   34.62{col 51}{space 3}0.000{col 59}{space 4} 34.06606{col 72}{space 3} 38.16477
+{txt}Nepal             {c |}{col 19}{res}{space 2} 274.9795{col 31}{space 2} 6.680324{col 42}{space 1}   41.16{col 51}{space 3}0.000{col 59}{space 4} 261.8577{col 72}{space 3} 288.1012
+{txt}Netherlands       {c |}{col 19}{res}{space 2} 10.79578{col 31}{space 2} 1.058751{col 42}{space 1}   10.20{col 51}{space 3}0.000{col 59}{space 4} 8.716144{col 72}{space 3} 12.87543
+{txt}New Zealand       {c |}{col 19}{res}{space 2}  10.6681{col 31}{space 2} 1.482491{col 42}{space 1}    7.20{col 51}{space 3}0.000{col 59}{space 4} 7.756132{col 72}{space 3} 13.58007
+{txt}Nicaragua         {c |}{col 19}{res}{space 2} 23.69215{col 31}{space 2} .4114366{col 42}{space 1}   57.58{col 51}{space 3}0.000{col 59}{space 4} 22.88399{col 72}{space 3} 24.50031
+{txt}Niger             {c |}{col 19}{res}{space 2} 42.13445{col 31}{space 2} 1.423295{col 42}{space 1}   29.60{col 51}{space 3}0.000{col 59}{space 4} 39.33876{col 72}{space 3} 44.93014
+{txt}Nigeria           {c |}{col 19}{res}{space 2} 171.3653{col 31}{space 2} 4.323719{col 42}{space 1}   39.63{col 51}{space 3}0.000{col 59}{space 4} 162.8725{col 72}{space 3} 179.8582
+{txt}Norway            {c |}{col 19}{res}{space 2}-26.77139{col 31}{space 2} 1.909508{col 42}{space 1}  -14.02{col 51}{space 3}0.000{col 59}{space 4}-30.52213{col 72}{space 3}-23.02066
+{txt}Oman              {c |}{col 19}{res}{space 2} 90.19055{col 31}{space 2} 1.883313{col 42}{space 1}   47.89{col 51}{space 3}0.000{col 59}{space 4} 86.49127{col 72}{space 3} 93.88982
+{txt}Pakistan          {c |}{col 19}{res}{space 2} 328.3602{col 31}{space 2} 8.013107{col 42}{space 1}   40.98{col 51}{space 3}0.000{col 59}{space 4} 312.6206{col 72}{space 3} 344.0999
+{txt}Panama            {c |}{col 19}{res}{space 2}-105.6765{col 31}{space 2} 2.980296{col 42}{space 1}  -35.46{col 51}{space 3}0.000{col 59}{space 4}-111.5305{col 72}{space 3}-99.82245
+{txt}Paraguay          {c |}{col 19}{res}{space 2} 95.64628{col 31}{space 2} 2.035484{col 42}{space 1}   46.99{col 51}{space 3}0.000{col 59}{space 4}  91.6481{col 72}{space 3} 99.64446
+{txt}Peru              {c |}{col 19}{res}{space 2} 132.1002{col 31}{space 2} 3.175997{col 42}{space 1}   41.59{col 51}{space 3}0.000{col 59}{space 4} 125.8618{col 72}{space 3} 138.3386
+{txt}Philippines       {c |}{col 19}{res}{space 2} 72.71497{col 31}{space 2} 1.703697{col 42}{space 1}   42.68{col 51}{space 3}0.000{col 59}{space 4}  69.3685{col 72}{space 3} 76.06144
+{txt}Poland            {c |}{col 19}{res}{space 2}-3.801711{col 31}{space 2} .9662217{col 42}{space 1}   -3.93{col 51}{space 3}0.000{col 59}{space 4}-5.699602{col 72}{space 3} -1.90382
+{txt}Portugal          {c |}{col 19}{res}{space 2} 82.67086{col 31}{space 2} 1.758788{col 42}{space 1}   47.00{col 51}{space 3}0.000{col 59}{space 4} 79.21618{col 72}{space 3} 86.12554
+{txt}Qatar             {c |}{col 19}{res}{space 2} 63.64709{col 31}{space 2} 1.411555{col 42}{space 1}   45.09{col 51}{space 3}0.000{col 59}{space 4} 60.87446{col 72}{space 3} 66.41972
+{txt}Republic of Kore  {c |}{col 19}{res}{space 2} 223.3806{col 31}{space 2} 6.378635{col 42}{space 1}   35.02{col 51}{space 3}0.000{col 59}{space 4} 210.8514{col 72}{space 3} 235.9098
+{txt}Republic of Mold  {c |}{col 19}{res}{space 2}-36.14879{col 31}{space 2} 1.582873{col 42}{space 1}  -22.84{col 51}{space 3}0.000{col 59}{space 4}-39.25793{col 72}{space 3}-33.03964
+{txt}Romania           {c |}{col 19}{res}{space 2} 94.15859{col 31}{space 2} 2.741424{col 42}{space 1}   34.35{col 51}{space 3}0.000{col 59}{space 4} 88.77377{col 72}{space 3}  99.5434
+{txt}Russian Federati  {c |}{col 19}{res}{space 2}-128.1361{col 31}{space 2} 3.201533{col 42}{space 1}  -40.02{col 51}{space 3}0.000{col 59}{space 4}-134.4247{col 72}{space 3}-121.8476
+{txt}Rwanda            {c |}{col 19}{res}{space 2} 140.8134{col 31}{space 2} 3.670396{col 42}{space 1}   38.36{col 51}{space 3}0.000{col 59}{space 4} 133.6038{col 72}{space 3} 148.0229
+{txt}Samoa             {c |}{col 19}{res}{space 2}-162.1758{col 31}{space 2} 3.964145{col 42}{space 1}  -40.91{col 51}{space 3}0.000{col 59}{space 4}-169.9623{col 72}{space 3}-154.3892
+{txt}Saudi Arabia      {c |}{col 19}{res}{space 2}-143.3399{col 31}{space 2} 4.935022{col 42}{space 1}  -29.05{col 51}{space 3}0.000{col 59}{space 4}-153.0335{col 72}{space 3}-133.6464
+{txt}Senegal           {c |}{col 19}{res}{space 2} 47.35428{col 31}{space 2} 1.264768{col 42}{space 1}   37.44{col 51}{space 3}0.000{col 59}{space 4} 44.86998{col 72}{space 3} 49.83859
+{txt}Singapore         {c |}{col 19}{res}{space 2} 257.3451{col 31}{space 2} 6.147584{col 42}{space 1}   41.86{col 51}{space 3}0.000{col 59}{space 4} 245.2698{col 72}{space 3} 269.4204
+{txt}Slovakia          {c |}{col 19}{res}{space 2} 3.801896{col 31}{space 2} 1.716709{col 42}{space 1}    2.21{col 51}{space 3}0.027{col 59}{space 4} .4298671{col 72}{space 3} 7.173924
+{txt}Slovenia          {c |}{col 19}{res}{space 2}-28.88558{col 31}{space 2} 1.685053{col 42}{space 1}  -17.14{col 51}{space 3}0.000{col 59}{space 4}-32.19543{col 72}{space 3}-25.57573
+{txt}South Africa      {c |}{col 19}{res}{space 2}-4.007705{col 31}{space 2} .5095307{col 42}{space 1}   -7.87{col 51}{space 3}0.000{col 59}{space 4}-5.008546{col 72}{space 3}-3.006865
+{txt}Spain             {c |}{col 19}{res}{space 2} 14.67837{col 31}{space 2} 1.191592{col 42}{space 1}   12.32{col 51}{space 3}0.000{col 59}{space 4}  12.3378{col 72}{space 3} 17.01895
+{txt}Sri Lanka         {c |}{col 19}{res}{space 2} 163.7751{col 31}{space 2} 3.752477{col 42}{space 1}   43.64{col 51}{space 3}0.000{col 59}{space 4} 156.4043{col 72}{space 3} 171.1459
+{txt}Sudan             {c |}{col 19}{res}{space 2} 312.2724{col 31}{space 2}  7.84176{col 42}{space 1}   39.82{col 51}{space 3}0.000{col 59}{space 4} 296.8693{col 72}{space 3} 327.6755
+{txt}Swaziland         {c |}{col 19}{res}{space 2}-177.8182{col 31}{space 2} 4.721678{col 42}{space 1}  -37.66{col 51}{space 3}0.000{col 59}{space 4}-187.0927{col 72}{space 3}-168.5437
+{txt}Sweden            {c |}{col 19}{res}{space 2} 3.133348{col 31}{space 2} 1.459393{col 42}{space 1}    2.15{col 51}{space 3}0.032{col 59}{space 4} .2667502{col 72}{space 3} 5.999945
+{txt}Switzerland       {c |}{col 19}{res}{space 2} 16.31223{col 31}{space 2} 1.074209{col 42}{space 1}   15.19{col 51}{space 3}0.000{col 59}{space 4} 14.20223{col 72}{space 3} 18.42224
+{txt}Syrian Arab Repu  {c |}{col 19}{res}{space 2} 217.8998{col 31}{space 2} 5.208695{col 42}{space 1}   41.83{col 51}{space 3}0.000{col 59}{space 4} 207.6687{col 72}{space 3} 228.1309
+{txt}Tajikistan        {c |}{col 19}{res}{space 2}-118.0279{col 31}{space 2} 3.494947{col 42}{space 1}  -33.77{col 51}{space 3}0.000{col 59}{space 4}-124.8928{col 72}{space 3} -111.163
+{txt}Thailand          {c |}{col 19}{res}{space 2} 204.8334{col 31}{space 2} 4.926336{col 42}{space 1}   41.58{col 51}{space 3}0.000{col 59}{space 4} 195.1568{col 72}{space 3} 214.5099
+{txt}Togo              {c |}{col 19}{res}{space 2}  100.486{col 31}{space 2} 2.338931{col 42}{space 1}   42.96{col 51}{space 3}0.000{col 59}{space 4}  95.8918{col 72}{space 3} 105.0802
+{txt}Tonga             {c |}{col 19}{res}{space 2} 125.5939{col 31}{space 2} 3.475588{col 42}{space 1}   36.14{col 51}{space 3}0.000{col 59}{space 4}  118.767{col 72}{space 3} 132.4208
+{txt}Trinidad and Tob  {c |}{col 19}{res}{space 2} 42.88069{col 31}{space 2} .9330497{col 42}{space 1}   45.96{col 51}{space 3}0.000{col 59}{space 4} 41.04796{col 72}{space 3} 44.71343
+{txt}Tunisia           {c |}{col 19}{res}{space 2}  157.532{col 31}{space 2} 3.503119{col 42}{space 1}   44.97{col 51}{space 3}0.000{col 59}{space 4}  150.651{col 72}{space 3} 164.4129
+{txt}Turkey            {c |}{col 19}{res}{space 2}-60.32995{col 31}{space 2} 2.620203{col 42}{space 1}  -23.02{col 51}{space 3}0.000{col 59}{space 4}-65.47665{col 72}{space 3}-55.18324
+{txt}Turkmenistan      {c |}{col 19}{res}{space 2}-150.2349{col 31}{space 2} 4.198716{col 42}{space 1}  -35.78{col 51}{space 3}0.000{col 59}{space 4}-158.4822{col 72}{space 3}-141.9876
+{txt}Uganda            {c |}{col 19}{res}{space 2} 163.7561{col 31}{space 2} 4.178778{col 42}{space 1}   39.19{col 51}{space 3}0.000{col 59}{space 4}  155.548{col 72}{space 3} 171.9643
+{txt}Ukraine           {c |}{col 19}{res}{space 2}-28.19287{col 31}{space 2} 1.287502{col 42}{space 1}  -21.90{col 51}{space 3}0.000{col 59}{space 4}-30.72184{col 72}{space 3}-25.66391
+{txt}United Arab Emir  {c |}{col 19}{res}{space 2} 236.3949{col 31}{space 2}  5.52075{col 42}{space 1}   42.82{col 51}{space 3}0.000{col 59}{space 4} 225.5509{col 72}{space 3}  247.239
+{txt}United Kingdom    {c |}{col 19}{res}{space 2}-182.9168{col 31}{space 2} 5.167309{col 42}{space 1}  -35.40{col 51}{space 3}0.000{col 59}{space 4}-193.0666{col 72}{space 3} -172.767
+{txt}United Republic   {c |}{col 19}{res}{space 2} 22.88544{col 31}{space 2} 1.087071{col 42}{space 1}   21.05{col 51}{space 3}0.000{col 59}{space 4} 20.75017{col 72}{space 3} 25.02071
+{txt}United States of  {c |}{col 19}{res}{space 2} 133.9091{col 31}{space 2}  4.35966{col 42}{space 1}   30.72{col 51}{space 3}0.000{col 59}{space 4} 125.3457{col 72}{space 3} 142.4725
+{txt}Uruguay           {c |}{col 19}{res}{space 2} 287.2097{col 31}{space 2} 7.240555{col 42}{space 1}   39.67{col 51}{space 3}0.000{col 59}{space 4} 272.9876{col 72}{space 3} 301.4319
+{txt}Uzbekistan        {c |}{col 19}{res}{space 2}-68.76353{col 31}{space 2} 2.546439{col 42}{space 1}  -27.00{col 51}{space 3}0.000{col 59}{space 4}-73.76535{col 72}{space 3}-63.76172
+{txt}Venezuela         {c |}{col 19}{res}{space 2}-56.95854{col 31}{space 2}    2.284{col 42}{space 1}  -24.94{col 51}{space 3}0.000{col 59}{space 4}-61.44486{col 72}{space 3}-52.47221
+{txt}Viet Nam          {c |}{col 19}{res}{space 2} 315.7998{col 31}{space 2} 8.260758{col 42}{space 1}   38.23{col 51}{space 3}0.000{col 59}{space 4} 299.5737{col 72}{space 3} 332.0259
+{txt}Yemen             {c |}{col 19}{res}{space 2} 181.8771{col 31}{space 2} 4.274512{col 42}{space 1}   42.55{col 51}{space 3}0.000{col 59}{space 4}  173.481{col 72}{space 3} 190.2733
+{txt}Zambia            {c |}{col 19}{res}{space 2}        0{col 31}{txt}  (omitted)
+Zimbabwe          {c |}{col 19}{res}{space 2}        0{col 31}{txt}  (omitted)
+{space 17} {c |}
+{space 12}_cons {c |}{col 19}{res}{space 2}-609.7082{col 31}{space 2} 16.54324{col 42}{space 1}  -36.86{col 51}{space 3}0.000{col 59}{space 4}-642.2031{col 72}{space 3}-577.2133
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. xtreg dale comp lhexp hc3 hc3sq gini pubthe, fe
+{txt}note: gini omitted because of collinearity
+note: pubthe omitted because of collinearity
+
+Fixed-effects (within) regression               Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2657                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6422                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6413                                        {txt}max = {res}        5
+
+                                                {txt}F({res}4{txt},{res}556{txt})           = {res}    50.29
+{txt}corr(u_i, Xb)  = {res}0.5060                         {txt}Prob > F           =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0179526{col 26}{space 2} .0058756{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .0064116{col 67}{space 3} .0294936
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2} .4432109{col 26}{space 2} .1329044{col 37}{space 1}    3.33{col 46}{space 3}0.001{col 54}{space 4} .1821547{col 67}{space 3}  .704267
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} 1.812178{col 26}{space 2} .4386574{col 37}{space 1}    4.13{col 46}{space 3}0.000{col 54}{space 4} .9505495{col 67}{space 3} 2.673806
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2}-.0014746{col 26}{space 2} .0373928{col 37}{space 1}   -0.04{col 46}{space 3}0.969{col 54}{space 4} -.074923{col 67}{space 3} .0719738
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 6}pubthe {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 42.63809{col 26}{space 2} 1.374817{col 37}{space 1}   31.01{col 46}{space 3}0.000{col 54}{space 4} 39.93762{col 67}{space 3} 45.33856
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 8.5308896
+     {txt}sigma_e {c |} {res} .46900317
+         {txt}rho {c |} {res} .99698663{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0:     F({res}139{txt}, {res}556{txt}) = {res}  535.73            {txt}Prob > F = {res}0.0000
+
+{com}. xtreg dale comp lhexp hc3 hc3sq gini pubthe, re
+{res}
+{txt}Random-effects GLS regression                   Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2565                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6817                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6809                                        {txt}max = {res}        5
+
+                                                {txt}Wald chi2({res}6{txt})       = {res}   656.78
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2        =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0284932{col 26}{space 2} .0068955{col 37}{space 1}    4.13{col 46}{space 3}0.000{col 54}{space 4} .0149782{col 67}{space 3} .0420082
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2} .8486456{col 26}{space 2} .1492584{col 37}{space 1}    5.69{col 46}{space 3}0.000{col 54}{space 4} .5561045{col 67}{space 3} 1.141187
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} 3.422405{col 26}{space 2}  .430404{col 37}{space 1}    7.95{col 46}{space 3}0.000{col 54}{space 4} 2.578829{col 67}{space 3} 4.265981
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2}-.1126237{col 26}{space 2} .0359122{col 37}{space 1}   -3.14{col 46}{space 3}0.002{col 54}{space 4}-.1830103{col 67}{space 3}-.0422371
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}-29.99452{col 26}{space 2}  5.38946{col 37}{space 1}   -5.57{col 46}{space 3}0.000{col 54}{space 4}-40.55767{col 67}{space 3}-19.43138
+{txt}{space 6}pubthe {c |}{col 14}{res}{space 2} .0163619{col 26}{space 2} .0234824{col 37}{space 1}    0.70{col 46}{space 3}0.486{col 54}{space 4}-.0296627{col 67}{space 3} .0623866
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 45.29199{col 26}{space 2} 2.963627{col 37}{space 1}   15.28{col 46}{space 3}0.000{col 54}{space 4} 39.48339{col 67}{space 3} 51.10059
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 4.3094946
+     {txt}sigma_e {c |} {res} .46900317
+         {txt}rho {c |} {res} .98829463{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. xtreg dale comp lhexp hc3 hc3sq gini pubthe, fe
+{txt}note: gini omitted because of collinearity
+note: pubthe omitted because of collinearity
+
+Fixed-effects (within) regression               Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2657                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6422                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6413                                        {txt}max = {res}        5
+
+                                                {txt}F({res}4{txt},{res}556{txt})           = {res}    50.29
+{txt}corr(u_i, Xb)  = {res}0.5060                         {txt}Prob > F           =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0179526{col 26}{space 2} .0058756{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} .0064116{col 67}{space 3} .0294936
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2} .4432109{col 26}{space 2} .1329044{col 37}{space 1}    3.33{col 46}{space 3}0.001{col 54}{space 4} .1821547{col 67}{space 3}  .704267
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} 1.812178{col 26}{space 2} .4386574{col 37}{space 1}    4.13{col 46}{space 3}0.000{col 54}{space 4} .9505495{col 67}{space 3} 2.673806
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2}-.0014746{col 26}{space 2} .0373928{col 37}{space 1}   -0.04{col 46}{space 3}0.969{col 54}{space 4} -.074923{col 67}{space 3} .0719738
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 6}pubthe {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 7}_cons {c |}{col 14}{res}{space 2} 42.63809{col 26}{space 2} 1.374817{col 37}{space 1}   31.01{col 46}{space 3}0.000{col 54}{space 4} 39.93762{col 67}{space 3} 45.33856
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 8.5308896
+     {txt}sigma_e {c |} {res} .46900317
+         {txt}rho {c |} {res} .99698663{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0:     F({res}139{txt}, {res}556{txt}) = {res}  535.73            {txt}Prob > F = {res}0.0000
+
+{com}. estimates store fixed
+
+. xtreg dale comp lhexp hc3 hc3sq gini pubthe, re
+{res}
+{txt}Random-effects GLS regression                   Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2565                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6817                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6809                                        {txt}max = {res}        5
+
+                                                {txt}Wald chi2({res}6{txt})       = {res}   656.78
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2        =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0284932{col 26}{space 2} .0068955{col 37}{space 1}    4.13{col 46}{space 3}0.000{col 54}{space 4} .0149782{col 67}{space 3} .0420082
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2} .8486456{col 26}{space 2} .1492584{col 37}{space 1}    5.69{col 46}{space 3}0.000{col 54}{space 4} .5561045{col 67}{space 3} 1.141187
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} 3.422405{col 26}{space 2}  .430404{col 37}{space 1}    7.95{col 46}{space 3}0.000{col 54}{space 4} 2.578829{col 67}{space 3} 4.265981
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2}-.1126237{col 26}{space 2} .0359122{col 37}{space 1}   -3.14{col 46}{space 3}0.002{col 54}{space 4}-.1830103{col 67}{space 3}-.0422371
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}-29.99452{col 26}{space 2}  5.38946{col 37}{space 1}   -5.57{col 46}{space 3}0.000{col 54}{space 4}-40.55767{col 67}{space 3}-19.43138
+{txt}{space 6}pubthe {c |}{col 14}{res}{space 2} .0163619{col 26}{space 2} .0234824{col 37}{space 1}    0.70{col 46}{space 3}0.486{col 54}{space 4}-.0296627{col 67}{space 3} .0623866
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 45.29199{col 26}{space 2} 2.963627{col 37}{space 1}   15.28{col 46}{space 3}0.000{col 54}{space 4} 39.48339{col 67}{space 3} 51.10059
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 4.3094946
+     {txt}sigma_e {c |} {res} .46900317
+         {txt}rho {c |} {res} .98829463{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. set more off
+
+. estimates store random
+
+. hausman fixed random
+
+{txt}{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}   fixed    {col 30}   random   {col 46}Difference{col 66}S.E.
+{hline 13}{c +}{hline 64}
+        comp {c |}  {res}{col 18} .0179526{col 31} .0284932{col 47}-.0105406{col 63}        .
+       {txt}lhexp {c |}  {res}{col 18} .4432109{col 31} .8486456{col 47}-.4054348{col 63}        .
+         {txt}hc3 {c |}  {res}{col 18} 1.812178{col 31} 3.422405{col 47}-1.610227{col 63} .0846921
+       {txt}hc3sq {c |}  {res}{col 18}-.0014746{col 31}-.1126237{col 47} .1111491{col 63}  .010418
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = consistent under Ho and Ha; obtained from xtreg}
+{ralign 78:B = inconsistent under Ha, efficient under Ho; obtained from xtreg}
+
+    Test:  Ho:  difference in coefficients not systematic
+
+{ralign 25:chi2({res:4})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{col 27}=  {res}    371.52
+{txt}{col 17}Prob>chi2 =  {res}    0.0000
+{txt}{col 17}(V_b-V_B is not positive definite)
+
+{com}. xtreg dale comp lhexp hc3 hc3sq gini pubthe i.year, fe
+{txt}note: gini omitted because of collinearity
+note: pubthe omitted because of collinearity
+
+Fixed-effects (within) regression               Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2988                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6729                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6685                                        {txt}max = {res}        5
+
+                                                {txt}F({res}8{txt},{res}552{txt})           = {res}    29.40
+{txt}corr(u_i, Xb)  = {res}0.7234                         {txt}Prob > F           =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0161836{col 26}{space 2} .0057847{col 37}{space 1}    2.80{col 46}{space 3}0.005{col 54}{space 4} .0048209{col 67}{space 3} .0275463
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2}  .310238{col 26}{space 2} .1331255{col 37}{space 1}    2.33{col 46}{space 3}0.020{col 54}{space 4} .0487435{col 67}{space 3} .5717326
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} .7821015{col 26}{space 2} .4763668{col 37}{space 1}    1.64{col 46}{space 3}0.101{col 54}{space 4} -.153612{col 67}{space 3} 1.717815
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2} .0006504{col 26}{space 2} .0366855{col 37}{space 1}    0.02{col 46}{space 3}0.986{col 54}{space 4}-.0714099{col 67}{space 3} .0727108
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 6}pubthe {c |}{col 14}{res}{space 2}        0{col 26}{txt}  (omitted)
+{space 12} {c |}
+{space 8}year {c |}
+{space 7}1994  {c |}{col 14}{res}{space 2} .0805244{col 26}{space 2} .0580956{col 37}{space 1}    1.39{col 46}{space 3}0.166{col 54}{space 4}-.0335911{col 67}{space 3} .1946399
+{txt}{space 7}1995  {c |}{col 14}{res}{space 2} .1819928{col 26}{space 2} .0660423{col 37}{space 1}    2.76{col 46}{space 3}0.006{col 54}{space 4} .0522679{col 67}{space 3} .3117177
+{txt}{space 7}1996  {c |}{col 14}{res}{space 2} .2989825{col 26}{space 2} .0769328{col 37}{space 1}    3.89{col 46}{space 3}0.000{col 54}{space 4} .1478657{col 67}{space 3} .4500993
+{txt}{space 7}1997  {c |}{col 14}{res}{space 2} .4338523{col 26}{space 2} .0899772{col 37}{space 1}    4.82{col 46}{space 3}0.000{col 54}{space 4} .2571127{col 67}{space 3} .6105918
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 49.45388{col 26}{space 2} 1.907422{col 37}{space 1}   25.93{col 46}{space 3}0.000{col 54}{space 4} 45.70719{col 67}{space 3} 53.20058
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 10.243477
+     {txt}sigma_e {c |} {res} .45995254
+         {txt}rho {c |} {res} .99798787{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0:     F({res}139{txt}, {res}552{txt}) = {res}  556.10            {txt}Prob > F = {res}0.0000
+
+{com}. testparm i.year
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}1994.year = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} 1995.year = 0{p_end}
+{p 0 7}{space 1}{text:( 3)}{space 1} 1996.year = 0{p_end}
+{p 0 7}{space 1}{text:( 4)}{space 1} 1997.year = 0{p_end}
+
+{txt}       F(  4,   552) ={res}    6.52
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{com}. xtreg dale comp lhexp hc3 hc3sq gini pubthe, re
+{res}
+{txt}Random-effects GLS regression                   Number of obs      = {res}      700
+{txt}Group variable: {res}c_name                          {txt}Number of groups   = {res}      140
+
+{txt}R-sq:  within  = {res}0.2565                         {txt}Obs per group: min = {res}        5
+{txt}       between = {res}0.6817                                        {txt}avg = {res}      5.0
+{txt}       overall = {res}0.6809                                        {txt}max = {res}        5
+
+                                                {txt}Wald chi2({res}6{txt})       = {res}   656.78
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2        =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        dale{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}comp {c |}{col 14}{res}{space 2} .0284932{col 26}{space 2} .0068955{col 37}{space 1}    4.13{col 46}{space 3}0.000{col 54}{space 4} .0149782{col 67}{space 3} .0420082
+{txt}{space 7}lhexp {c |}{col 14}{res}{space 2} .8486456{col 26}{space 2} .1492584{col 37}{space 1}    5.69{col 46}{space 3}0.000{col 54}{space 4} .5561045{col 67}{space 3} 1.141187
+{txt}{space 9}hc3 {c |}{col 14}{res}{space 2} 3.422405{col 26}{space 2}  .430404{col 37}{space 1}    7.95{col 46}{space 3}0.000{col 54}{space 4} 2.578829{col 67}{space 3} 4.265981
+{txt}{space 7}hc3sq {c |}{col 14}{res}{space 2}-.1126237{col 26}{space 2} .0359122{col 37}{space 1}   -3.14{col 46}{space 3}0.002{col 54}{space 4}-.1830103{col 67}{space 3}-.0422371
+{txt}{space 8}gini {c |}{col 14}{res}{space 2}-29.99452{col 26}{space 2}  5.38946{col 37}{space 1}   -5.57{col 46}{space 3}0.000{col 54}{space 4}-40.55767{col 67}{space 3}-19.43138
+{txt}{space 6}pubthe {c |}{col 14}{res}{space 2} .0163619{col 26}{space 2} .0234824{col 37}{space 1}    0.70{col 46}{space 3}0.486{col 54}{space 4}-.0296627{col 67}{space 3} .0623866
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 45.29199{col 26}{space 2} 2.963627{col 37}{space 1}   15.28{col 46}{space 3}0.000{col 54}{space 4} 39.48339{col 67}{space 3} 51.10059
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 4.3094946
+     {txt}sigma_e {c |} {res} .46900317
+         {txt}rho {c |} {res} .98829463{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. xttest0
+
+{txt}Breusch and Pagan Lagrangian multiplier test for random effects
+
+        dale[c_name,t] = Xb + u[c_name] + e[c_name,t]
+
+{col 9}Estimated results:
+{col 26}{c |}{col 34}Var{col 42}sd = sqrt(Var)
+{col 17}{hline 9}{c +}{hline 29}
+{col 16}     dale {c |}  {res} 150.5655       12.27051
+{col 24}{txt}e {c |}  {res}  .219964       .4690032
+{col 24}{txt}u {c |}  {res} 18.57174       4.309495
+
+{txt}{col 9}Test:{col 17}Var(u) = 0
+{col 30}{help j_chibar:chibar2(01)} ={col 44}{res}  903.26
+{txt}{col 27}Prob > chibar2 = {col 45}{res} 0.0000
+
+{com}. gen hc3sq = hc3^2
+{err}hc3sq already defined
+{txt}{search r(110):r(110);}
+
+{com}. 

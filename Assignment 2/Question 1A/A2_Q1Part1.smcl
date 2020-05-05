@@ -1,0 +1,98 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ASUS\Downloads\DC++ Downloads\A2_Q1Part1.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 6 Apr 2020, 23:14:00
+
+{com}. import excel "E:\STUFF\3-2\ECON F342 ApEc\Assignment 2\2. G-II Panel Data\FinalBook.xlsx", sheet("Sheet1") firstrow
+{res}
+{com}. br
+
+. * Create 'HC3sq' variable (square of education)
+
+. 
+. gen HC3sq = HC3^2
+
+. 
+. 
+. 
+. * 'yeardummy' variable is 1 for the year 1997 and 0 for 1993
+
+. 
+. * Create 'tropicy' variable which is the interaction term
+
+. 
+. gen tropicy = TROPICS*yeardummy
+
+. 
+. 
+. 
+. * Run regression
+
+. 
+. reg DALE COMP LHEXP HC3 HC3sq GINI yeardummy TROPICS tropicy , robust
+
+{txt}Linear regression                                      Number of obs ={res}     280
+                                                       {txt}F(  8,   271) ={res}  241.03
+                                                       {txt}Prob > F      = {res} 0.0000
+                                                       {txt}R-squared     = {res} 0.8195
+                                                       {txt}Root MSE      = {res} 5.3018
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}        DALE{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}COMP {c |}{col 14}{res}{space 2} .4265388{col 26}{space 2} .2371683{col 37}{space 1}    1.80{col 46}{space 3}0.073{col 54}{space 4}-.0403879{col 67}{space 3} .8934655
+{txt}{space 7}LHEXP {c |}{col 14}{res}{space 2} 2.139773{col 26}{space 2} 1.468681{col 37}{space 1}    1.46{col 46}{space 3}0.146{col 54}{space 4}-.7517028{col 67}{space 3} 5.031249
+{txt}{space 9}HC3 {c |}{col 14}{res}{space 2} 3.729781{col 26}{space 2} .8822431{col 37}{space 1}    4.23{col 46}{space 3}0.000{col 54}{space 4} 1.992859{col 67}{space 3} 5.466703
+{txt}{space 7}HC3sq {c |}{col 14}{res}{space 2} -.231551{col 26}{space 2} .0527452{col 37}{space 1}   -4.39{col 46}{space 3}0.000{col 54}{space 4}-.3353934{col 67}{space 3}-.1277086
+{txt}{space 8}GINI {c |}{col 14}{res}{space 2}-10.94712{col 26}{space 2} 7.717791{col 37}{space 1}   -1.42{col 46}{space 3}0.157{col 54}{space 4}-26.14157{col 67}{space 3} 4.247329
+{txt}{space 3}yeardummy {c |}{col 14}{res}{space 2}-.5300353{col 26}{space 2} .6406139{col 37}{space 1}   -0.83{col 46}{space 3}0.409{col 54}{space 4}-1.791248{col 67}{space 3} .7311774
+{txt}{space 5}TROPICS {c |}{col 14}{res}{space 2}-1.385423{col 26}{space 2} 1.051031{col 37}{space 1}   -1.32{col 46}{space 3}0.189{col 54}{space 4}-3.454647{col 67}{space 3} .6838004
+{txt}{space 5}tropicy {c |}{col 14}{res}{space 2} .0670298{col 26}{space 2} 1.201258{col 37}{space 1}    0.06{col 46}{space 3}0.956{col 54}{space 4}-2.297955{col 67}{space 3} 2.432014
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.875698{col 26}{space 2} 9.904531{col 37}{space 1}    0.69{col 46}{space 3}0.488{col 54}{space 4}-12.62391{col 67}{space 3} 26.37531
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. sum DALE if TROPICS == 0 & yeardummy == 0
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+{space 8}DALE {c |}{res}        75    63.56713    7.972025   36.52346   74.10031
+
+{com}. 
+. sum DALE if TROPICS == 1 & yeardummy == 0
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+{space 8}DALE {c |}{res}        65    49.34521      11.708   28.38013   68.71217
+
+{com}. 
+. sum DALE if TROPICS == 0 & yeardummy == 1
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+{space 8}DALE {c |}{res}        75    64.34291     7.92021   36.96169   74.82708
+
+{com}. 
+. sum DALE if TROPICS == 1 & yeardummy == 1
+
+{txt}    Variable {c |}       Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 56}
+{space 8}DALE {c |}{res}        65    49.99037    12.39198   29.11829   69.54531
+
+{com}. ovtest
+
+{txt}Ramsey RESET test using powers of the fitted values of DALE
+       Ho:  model has no omitted variables
+                 F(3, 268) = {res}    13.95
+                  {txt}Prob > F =      {res}0.0000
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ASUS\Downloads\DC++ Downloads\A2_Q1Part1.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 6 Apr 2020, 23:15:20
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
